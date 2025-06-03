@@ -2,6 +2,13 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { createRequire } from 'module'
+import { fileURLToPath } from 'url'
+import path from 'path'
+const require = createRequire(import.meta.url)
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const serverPath = path.join(path.dirname(app.getPath('exe')), 'server', 'dist', 'index.js')
+const { startServer } = require(serverPath)
 
 function createWindow(): void {
   // Create the browser window.
@@ -39,6 +46,8 @@ function createWindow(): void {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  // start the express server
+  startServer()
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 

@@ -14,7 +14,7 @@ const Home = () => {
           placement="bottom"
         >
           <div className="rounded-2xl border-2 border-slate-400 bg-success-300 p-4 font-bold text-lg flex flex-col items-start">
-            <span className="tracking-widest">Total</span>
+            <span className="tracking-widest">Vent</span>
             <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
               {formatMoneyToMAD(236551111111456.0)}
             </span>
@@ -29,7 +29,7 @@ const Home = () => {
           placement="bottom"
         >
           <div className="rounded-2xl border-2 border-slate-400 bg-default-300 p-4 font-bold text-lg flex flex-col items-start">
-            <span className="tracking-widest">Total</span>
+            <span className="tracking-widest">Commandes</span>
             <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
               {formatMoneyToMAD(23655.0)}
             </span>
@@ -44,7 +44,7 @@ const Home = () => {
           placement="bottom"
         >
           <div className="rounded-2xl border-2 border-slate-400 bg-warning-400 p-4 font-bold text-lg flex flex-col items-start">
-            <span className="tracking-widest">Total</span>
+            <span className="tracking-widest">livraison</span>
             <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
               {formatMoneyToMAD(23655.0)}
             </span>
@@ -66,7 +66,9 @@ const Home = () => {
           </div>
         </Tooltip>
       </div>
-      <div className="h-[200vh]"></div>
+      <div className=''>
+
+      </div>
     </div>
   )
 }

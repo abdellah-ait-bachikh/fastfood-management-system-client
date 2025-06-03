@@ -1,26 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
-    font-family: "Roboto Mono", monospace;
+* {
+  font-family: 'Roboto Mono', monospace;
 }
-div#root{
-    width: 100%;
-    
+div#root {
+  width: 100%;
 }
-a.active{
-    @apply  bg-gray-200  dark:bg-slate-950 rounded-3xl  ;
-  
+a.active {
+  @apply bg-gray-200  dark:bg-slate-950 rounded-3xl;
 }
 
-/* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-500 cursor-grab active:cursor-grabbing ;
+  @apply bg-slate-500 cursor-grab active:cursor-grabbing;
   border-radius: 4px;
 }
 
