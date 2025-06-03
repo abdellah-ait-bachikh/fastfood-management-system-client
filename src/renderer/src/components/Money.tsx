@@ -8,7 +8,7 @@ interface AmounthProps extends ChipProps {
 
 const Amounth = ({ amounth, ...res }: AmounthProps) => {
    
-  return <Tooltip   content={formatMoneyToMAD(amounth)} showArrow size='lg' color='foreground' closeDelay={0}><Chip  {...res}>{formatShortMoney(amounth)}</Chip></Tooltip>
+  return <Tooltip   content={formatMoneyToMAD(amounth)} showArrow size='lg'  color='foreground' closeDelay={0}><Chip  {...res}>{formatShortMoney(amounth)}</Chip></Tooltip>
 }
 
 export default Amounth

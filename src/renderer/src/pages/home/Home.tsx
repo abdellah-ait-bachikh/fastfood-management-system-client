@@ -1,5 +1,11 @@
 import { Tooltip } from '@heroui/react'
-import { formatShortMoney, formatQuantity, formatWithSeparators, getQuantityColor, formatMoneyToMAD } from '../../lib/utils'
+import {
+  formatShortMoney,
+  formatQuantity,
+  formatWithSeparators,
+  getQuantityColor,
+  formatMoneyToMAD
+} from '../../lib/utils'
 import Quantity from '@renderer/components/Quantity'
 import Amounth from '@renderer/components/Money'
 import IconComponent from '@renderer/components/IconComponent'
@@ -13,7 +19,6 @@ const Home = () => {
           content={formatMoneyToMAD(236551111111456.0)}
           color="success"
           closeDelay={0}
-          size="lg"
           showArrow
           placement="bottom"
         >
@@ -28,7 +33,6 @@ const Home = () => {
           content={formatMoneyToMAD(23655.0)}
           color="default"
           closeDelay={0}
-          size="lg"
           showArrow
           placement="bottom"
         >
@@ -43,7 +47,6 @@ const Home = () => {
           content={formatMoneyToMAD(23655.0)}
           color="warning"
           closeDelay={0}
-          size="lg"
           showArrow
           placement="bottom"
         >
@@ -58,7 +61,6 @@ const Home = () => {
           content={formatWithSeparators(23655)}
           color="danger"
           closeDelay={0}
-          size="lg"
           showArrow
           placement="bottom"
         >
@@ -91,72 +93,85 @@ const Home = () => {
                   <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
                   <td className="px-2 py-1 text-center">
                     <Quantity
-                      size="lg"
                       variant="shadow"
+                      classNames={{ content: 'font-semibold' }}
                       quantity={9845}
                       color={getQuantityColor(9845)}
                     />
                   </td>
                   <td className="px-2 py-1 text-center">
-                    {<Amounth size="lg" amounth={654987465465} />}
+                    {<Amounth classNames={{ content: 'font-semibold' }} amounth={654987465465} />}
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
                   <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
                   <td className="px-2 py-1 text-center">
                     <Quantity
-                      size="lg"
                       variant="shadow"
+                      classNames={{ content: 'font-semibold' }}
                       quantity={15}
                       color={getQuantityColor(15)}
                     />
                   </td>
-                  <td className="px-2 py-1 text-center">{<Amounth size="lg" amounth={465} />}</td>
-                </tr>
-                <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
-                  <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
                   <td className="px-2 py-1 text-center">
-                    <Quantity
-                      size="lg"
-                      variant="shadow"
-                      quantity={98}
-                      color={getQuantityColor(98)}
-                    />
-                  </td>
-                  <td className="px-2 py-1 text-center">{<Amounth size="lg" amounth={5646} />}</td>
-                </tr>
-                <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
-                  <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
-                  <td className="px-2 py-1 text-center">
-                    <Quantity size="lg" variant="shadow" quantity={0} color={getQuantityColor(0)} />
-                  </td>
-                  <td className="px-2 py-1 text-center">{<Amounth size="lg" amounth={36587} />}</td>
-                </tr>
-                <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
-                  <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
-                  <td className="px-2 py-1 text-center">
-                    <Quantity
-                      size="lg"
-                      variant="shadow"
-                      quantity={98}
-                      color={getQuantityColor(98)}
-                    />
-                  </td>
-                  <td className="px-2 py-1 text-center">
-                    {<Amounth size="lg" amounth={123658} />}
+                    {<Amounth classNames={{ content: 'font-semibold' }} amounth={465} />}
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
                   <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
                   <td className="px-2 py-1 text-center">
                     <Quantity
-                      size="lg"
                       variant="shadow"
+                      classNames={{ content: 'font-semibold' }}
                       quantity={98}
                       color={getQuantityColor(98)}
                     />
                   </td>
-                  <td className="px-2 py-1 text-center">{<Amounth size="lg" amounth={49465} />}</td>
+                  <td className="px-2 py-1 text-center">
+                    {<Amounth classNames={{ content: 'font-semibold' }} amounth={5646} />}
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
+                  <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
+                  <td className="px-2 py-1 text-center">
+                    <Quantity
+                      variant="shadow"
+                      classNames={{ content: 'font-semibold' }}
+                      quantity={0}
+                      color={getQuantityColor(0)}
+                    />
+                  </td>
+                  <td className="px-2 py-1 text-center">
+                    {<Amounth classNames={{ content: 'font-semibold' }} amounth={36587} />}
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
+                  <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
+                  <td className="px-2 py-1 text-center">
+                    <Quantity
+                      variant="shadow"
+                      classNames={{ content: 'font-semibold' }}
+                      quantity={98}
+                      color={getQuantityColor(98)}
+                    />
+                  </td>
+                  <td className="px-2 py-1 text-center">
+                    {<Amounth classNames={{ content: 'font-semibold' }} amounth={123658} />}
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-200 dark:hover:bg-slate-900">
+                  <td className="text-lg font-semibold px-2 py-1 text-nowrap">Ma9la sepia</td>
+                  <td className="px-2 py-1 text-center">
+                    <Quantity
+                      variant="shadow"
+                      classNames={{ content: 'font-semibold' }}
+                      quantity={98}
+                      color={getQuantityColor(98)}
+                    />
+                  </td>
+                  <td className="px-2 py-1 text-center">
+                    {<Amounth classNames={{ content: 'font-semibold' }} amounth={49465} />}
+                  </td>
                 </tr>
               </tbody>
             </table>
