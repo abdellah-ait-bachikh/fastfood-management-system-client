@@ -16,7 +16,7 @@ const ChartSlider: React.FC = () => {
           <PieChart title="Produits" labels={['A', 'B', 'C']} series={[30, 40, 30]} />
         </SwiperSlide>
         <SwiperSlide>
-          <PieChart title="Livreurs" labels={['X', 'Y', 'Z']} series={[25, 25, 50]} />
+          <PieChart title="Packes" labels={['X', 'Y', 'Z']} series={[25, 25, 50]} />
         </SwiperSlide>
       </Swiper>
     </div>

@@ -14,6 +14,7 @@ import { FaStar } from 'react-icons/fa6'
 import { FaMotorcycle } from 'react-icons/fa6'
 import PieChart from '@renderer/components/Piechart'
 import ChartSlider from '@renderer/components/home/ChartSlider'
+import MountlyPaymentsShart from '@renderer/components/home/MountlyPaymentsShart'
 
 const Home = () => {
   return (
@@ -114,6 +115,118 @@ const Home = () => {
                     category: { name: 'tacos' },
                     totalePrice: 3658,
                     quantity: 3256
+                  },
+                  {
+                    id: 4,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  },
+                  {
+                    id: 5,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  },
+                  {
+                    id: 6,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  },
+                  {
+                    id: 7,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  },
+                  {
+                    id: 8,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  },
+                  {
+                    id: 9,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  },
+                  {
+                    id: 10,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
+                  }
+                ].map((item) => (
+                  <tr key={item.id} className="hover:bg-gray-200 dark:hover:bg-slate-900">
+                    <td className="text-lg font-semibold px-2 py-1 text-nowrap">{`${item.category.name} ${item.name}`}</td>
+                    <td className="px-2 py-2 text-center">
+                      <Quantity
+                        variant="shadow"
+                        classNames={{ content: 'font-semibold' }}
+                        quantity={item.quantity}
+                        color={getQuantityColor(item.quantity)}
+                      />
+                    </td>
+                    <td className="px-2 py-2 text-center">
+                      {
+                        <Amounth
+                          classNames={{ content: 'font-semibold' }}
+                          amounth={item.totalePrice}
+                        />
+                      }
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
+          <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
+            <IconComponent Icon={LuAlignStartVertical} /> <span>Packes populaires</span>{' '}
+          </h1>
+          <div className="overflow-hidden overflow-y-auto overflow-x-auto max-h-[400px] mt-2">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b text-xl">
+                  <th className="text-left px-2 py-1 text-nowrap tracking-widest">Packe</th>
+                  <th className="text-center px-2 py-1 text-nowrap tracking-widest">Quantité</th>
+                  <th className="text-center px-2 py-1 text-nowrap tracking-widest">
+                    Montant (MAD)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    id: 1,
+                    name: 'cepia',
+                    category: { name: 'ma9la' },
+                    totalePrice: 32564.32,
+                    quantity: 48953212
+                  },
+                  {
+                    id: 2,
+                    name: 'calamar',
+                    category: { name: 'ma9la' },
+                    totalePrice: 65932.32,
+                    quantity: 58563
+                  },
+                  {
+                    id: 3,
+                    name: 'sepia',
+                    category: { name: 'tacos' },
+                    totalePrice: 3658,
+                    quantity: 3256
                   }
                   // {
                   //   id: 4,
@@ -175,6 +288,8 @@ const Home = () => {
             </table>
           </div>
         </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-2">
         <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
           <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
             <IconComponent Icon={FaStar} /> <span>Livreurs tendance</span>{' '}
@@ -263,14 +378,12 @@ const Home = () => {
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+        </div>{' '}
         <div>
           <ChartSlider />
         </div>
-        <div></div>
       </div>
+      <MountlyPaymentsShart />
     </div>
   )
 }

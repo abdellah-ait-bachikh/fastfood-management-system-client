@@ -15,7 +15,7 @@ const PieChart = ({
       type: 'donut',
       width: '100%'
     },
-    labels: labels,
+    labels: labels, 
     legend: {
       show: false
     },
@@ -35,7 +35,7 @@ const PieChart = ({
 
   return (
     <div className="w-full flex flex-col justify-start items-center gap-2 p-4">
-      {title && <h1 className='font-semibold text-2xl'>{title}</h1>}
+      {title && <h1 className="font-semibold text-2xl">{title}</h1>}
       <Chart options={chartOptions} series={chartSeries} type="donut" width="100%" />
     </div>
   )
