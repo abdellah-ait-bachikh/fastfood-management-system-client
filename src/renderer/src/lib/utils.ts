@@ -58,7 +58,7 @@ export const formatShortMoney = (amount: number): string => {
   }
 
   // Take only the first digit of the integer part
-  const firstDigit = Math.floor(value).toString()[0]
+  const firstDigit = Math.floor(value).toString()
 
   return firstDigit + ' ' + suffix
 }
