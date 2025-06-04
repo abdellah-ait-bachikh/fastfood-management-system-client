@@ -267,11 +267,9 @@ const Home = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div>
-          <ChartSlider/>
+          <ChartSlider />
         </div>
-        <div>
-         
-        </div>
+        <div></div>
       </div>
     </div>
   )
