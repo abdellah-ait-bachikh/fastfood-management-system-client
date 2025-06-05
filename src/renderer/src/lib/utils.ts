@@ -1,3 +1,8 @@
+import axios from "axios"
+export const app_uri = import.meta.env.VITE_API_URI;
+
+export const req = axios.create({baseURL:app_uri})
+
 export const formatMoneyToMAD = (amount: number) => {
   const formatted = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -29,6 +34,7 @@ export const formatQuantity = (quantity: number): string => {
 
   return `${quantity}`
 }
+
 export const formatWithSeparators=(value: number): string =>{
   return value.toLocaleString('en-US', {
     maximumFractionDigits: 0,

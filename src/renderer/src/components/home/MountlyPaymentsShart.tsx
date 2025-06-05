@@ -58,7 +58,6 @@ const MountlyPaymentsShart: React.FC = () => {
   ]
 }, [mountlyPayments])
 
-  console.log(formattedSeries)
   const options: ApexOptions = {
     chart: {
       type: 'area',

@@ -9,7 +9,6 @@ import { navLinks } from '../lib/const'
 const Navbar = () => {
   const { asideOpen } = useSelector((state: { app: TAppInitialState }) => state.app)
   useEffect(() => {
-    console.log(window.innerWidth)
   }, [])
   return (
     <nav className="w-full flex flex-col mt-6 flex-1 overflow-hidden overflow-y-auto gap-2">
