@@ -7,11 +7,20 @@ export interface TAppInitialState {
 }
 
 export interface THomeInitialState {
-  summary: {
+  summary: null | {
     totaleMoney: number
     totalDeleveryMoney: number
     ordersCount: number
     dayCounts: number
-  } | null ,
-  error :null | string
+  }
+  error: null | string
+  topPopularProducts:
+    | null
+    | {
+        id: number
+        name: string
+        category: { name: string; imageUri: string }
+        quantity: number
+        totaleMoney: number
+      }[]
 }

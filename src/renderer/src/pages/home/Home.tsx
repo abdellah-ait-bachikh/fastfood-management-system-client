@@ -21,7 +21,7 @@ import { getHomeData } from '@renderer/redux/apiCall/homeApiCall'
 
 const Home = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { summary, error } = useSelector((state: { home: THomeInitialState }) => state.home)
+  const { summary, error,topPopularProducts } = useSelector((state: { home: THomeInitialState }) => state.home)
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     getHomeData(dispatch, setLoading)
@@ -50,7 +50,7 @@ const Home = () => {
                 showArrow
                 placement="bottom"
               >
-                <div className="rounded-2xl border-2 border-slate-400 bg-success-300 p-4 font-bold text-lg flex flex-col items-start">
+                <div className="rounded-2xl border-2 border-slate-400 bg-success-300 p-4 font-bold text-xl flex flex-col items-start">
                   <span className="tracking-widest">Vent</span>
                   <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                     {formatMoneyToMAD(summary.totaleMoney)}
@@ -64,7 +64,7 @@ const Home = () => {
                 showArrow
                 placement="bottom"
               >
-                <div className="rounded-2xl border-2 border-slate-400 bg-default-300 p-4 font-bold text-lg flex flex-col items-start">
+                <div className="rounded-2xl border-2 border-slate-400 bg-default-300 p-4 font-bold text-xl flex flex-col items-start">
                   <span className="tracking-widest">Commandes</span>
                   <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                     {formatQuantity(summary.ordersCount)}
@@ -78,7 +78,7 @@ const Home = () => {
                 showArrow
                 placement="bottom"
               >
-                <div className="rounded-2xl border-2 border-slate-400 bg-warning-400 p-4 font-bold text-lg flex flex-col items-start">
+                <div className="rounded-2xl border-2 border-slate-400 bg-warning-400 p-4 font-bold text-xl flex flex-col items-start">
                   <span className="tracking-widest">livraison</span>
                   <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                     {formatMoneyToMAD(summary.totalDeleveryMoney)}
@@ -92,7 +92,7 @@ const Home = () => {
                 showArrow
                 placement="bottom"
               >
-                <div className="rounded-2xl border-2 border-slate-400 bg-danger-400 p-4 font-bold text-lg flex flex-col items-start">
+                <div className="rounded-2xl border-2 border-slate-400 bg-danger-400 p-4 font-bold text-xl flex flex-col items-start">
                   <span className="tracking-widest">Journée</span>
                   <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                     {formatQuantity(summary.dayCounts)}
@@ -102,7 +102,7 @@ const Home = () => {
             </div>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-2">
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
+         {topPopularProducts &&   <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
               <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
                 <IconComponent Icon={LuAlignStartVertical} /> <span>Produits populaires</span>{' '}
               </h1>
@@ -120,78 +120,7 @@ const Home = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {[
-                      {
-                        id: 1,
-                        name: 'cepia',
-                        category: { name: 'ma9la' },
-                        totalePrice: 32564.32,
-                        quantity: 48953212
-                      },
-                      {
-                        id: 2,
-                        name: 'calamar',
-                        category: { name: 'ma9la' },
-                        totalePrice: 65932.32,
-                        quantity: 58563
-                      },
-                      {
-                        id: 3,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 4,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 5,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 6,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 7,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 8,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 9,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 10,
-                        name: 'sepia',
-                        category: { name: 'tacos' },
-                        totalePrice: 3658,
-                        quantity: 3256
-                      }
-                    ].map((item) => (
+                    {topPopularProducts.map((item) => (
                       <tr key={item.id} className="hover:bg-gray-200 dark:hover:bg-slate-900">
                         <td className="text-lg font-semibold px-2 py-1 text-nowrap">{`${item.category.name} ${item.name}`}</td>
                         <td className="px-2 py-2 text-center">
@@ -206,7 +135,7 @@ const Home = () => {
                           {
                             <Amounth
                               classNames={{ content: 'font-semibold' }}
-                              amounth={item.totalePrice}
+                              amounth={item.totaleMoney}
                             />
                           }
                         </td>
@@ -215,7 +144,7 @@ const Home = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div>}
             <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
               <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
                 <IconComponent Icon={LuAlignStartVertical} /> <span>Packes populaires</span>{' '}
