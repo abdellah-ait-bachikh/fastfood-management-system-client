@@ -19,13 +19,13 @@ export const getQuantityColor = (quantity: number) => {
   }
 }
 
-export const formatQuantity =(quantity: number): string=> {
+export const formatQuantity = (quantity: number): string => {
   const abs = Math.abs(quantity)
 
-  if (abs >= 1_000_000_000_000) return `${(quantity / 1_000_000_000_000).toFixed(1)} T`
-  if (abs >= 1_000_000_000) return `${(quantity / 1_000_000_000).toFixed(1)} Md`
-  if (abs >= 1_000_000) return `${(quantity / 1_000_000).toFixed(1)} M`
-  if (abs >= 1_000) return `${(quantity / 1_000).toFixed(1)} K`
+  if (abs >= 1_000_000_000_000) return `${Math.floor(quantity / 1_000_000_000_000)} T`
+  if (abs >= 1_000_000_000) return `${Math.floor(quantity / 1_000_000_000)} Md`
+  if (abs >= 1_000_000) return `${Math.floor(quantity / 1_000_000)} M`
+  if (abs >= 1_000) return `${Math.floor(quantity / 1_000)} K`
 
   return `${quantity}`
 }
