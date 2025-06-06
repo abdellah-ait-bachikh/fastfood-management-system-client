@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { THomeInitialState } from '@renderer/lib/types'
 
 const ChartSlider: React.FC = () => {
-  const { topPopularOffers, topPopularProducts } = useSelector(
+  const { topPopularOffers, topPopularProducts, topPopularDeleverys } = useSelector(
     (state: { home: THomeInitialState }) => state.home
   )
   return (
@@ -30,6 +30,13 @@ const ChartSlider: React.FC = () => {
               title="Packes"
               labels={topPopularOffers?.map((item) => item.name)}
               series={topPopularOffers?.map((item) => item.quantity)}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PieChart
+              title="Livreus"
+              labels={topPopularDeleverys?.map((item) => item.userName)}
+              series={topPopularDeleverys?.map((item) => item.paymentsCount)}
             />
           </SwiperSlide>
         </Swiper>

@@ -2,61 +2,47 @@ import React, { useEffect } from 'react'
 import Chart from 'react-apexcharts'
 import { ApexOptions } from 'apexcharts' // Importing ApexOptions for correct typing
 import { useSelector } from 'react-redux'
-import { TAppInitialState } from '@renderer/lib/types'
+import { TAppInitialState, THomeInitialState } from '@renderer/lib/types'
 import { formatMoneyToMAD, formatWithSeparators } from '@renderer/lib/utils'
 
-const MountlyPaymentsShart: React.FC = () => {
+const MountlyPaymentsShart: React.FC<{
+  mounthlyYearStatus: THomeInitialState['mounthlyYearStatus']
+}> = ({ mounthlyYearStatus }) => {
   const { asideOpen, theme } = useSelector((state: { app: TAppInitialState }) => state.app)
 
-  // ✅ Static data added here
- const mountlyPayments = [
-  { month: 0, total: 1540000, count: 4200 },   // Jan
-  { month: 1, total: 1385000, count: 3900 },   // Feb
-  { month: 2, total: 1650000, count: 4500 },   // Mar
-  { month: 3, total: 1825000, count: 4700 },   // Apr
-  { month: 4, total: 2100000, count: 5200 },   // May
-  { month: 5, total: 2350000, count: 6000 },   // Jun
-  { month: 6, total: 2280000, count: 5900 },   // Jul
-  { month: 7, total: 2500000, count: 6300 },   // Aug
-  { month: 8, total: 2600000, count: 6600 },   // Sep
-  { month: 9, total: 2700000, count: 6800 },   // Oct
-  { month: 10, total: 2900000, count: 7000 },  // Nov
-  { month: 11, total: 3500000, count: 8000 }   // Dec
-]
+  const formattedSeries = React.useMemo(() => {
+    if (!mounthlyYearStatus || mounthlyYearStatus.length === 0) {
+      return [
+        {
+          name: 'Recettes en argent',
+          data: Array(12).fill(0)
+        },
+        {
+          name: 'Nombre de commandes',
+          data: Array(12).fill(0)
+        }
+      ]
+    }
 
- const formattedSeries = React.useMemo(() => {
-  if (!mountlyPayments || mountlyPayments.length === 0) {
+    const totalMoney: number[] = Array(12).fill(0)
+    const paymentsCount: number[] = Array(12).fill(0)
+
+    mounthlyYearStatus.forEach((item) => {
+      totalMoney[item.month] = item.totalMoney
+      paymentsCount[item.month] = item.paymentsCount
+    })
+
     return [
       {
         name: 'Recettes en argent',
-        data: Array(12).fill(0)
+        data: totalMoney
       },
       {
         name: 'Nombre de commandes',
-        data: Array(12).fill(0)
+        data: paymentsCount
       }
     ]
-  }
-
-  const totals: number[] = Array(12).fill(0)
-  const counts: number[] = Array(12).fill(0)
-
-  mountlyPayments.forEach((item) => {
-    totals[item.month] = item.total
-    counts[item.month] = item.count
-  })
-
-  return [
-    {
-      name: 'Recettes en argent',
-      data: totals
-    },
-    {
-      name: 'Nombre de commandes',
-      data: counts
-    }
-  ]
-}, [mountlyPayments])
+  }, [mounthlyYearStatus])
 
   const options: ApexOptions = {
     chart: {

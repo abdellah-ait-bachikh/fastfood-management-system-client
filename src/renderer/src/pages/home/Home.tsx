@@ -1,6 +1,5 @@
 import { Alert, Select, SelectItem, Spinner, Tooltip, User } from '@heroui/react'
 import {
-  formatShortMoney,
   formatQuantity,
   formatWithSeparators,
   getQuantityColor,
@@ -21,10 +20,11 @@ import { getHomeData } from '@renderer/redux/apiCall/homeApiCall'
 
 const Home = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { summary, error, topPopularProducts, topPopularOffers, topPopularDeleverys, years } =
+  const { summary, error, topPopularProducts, topPopularOffers, topPopularDeleverys, years,mounthlyYearStatus } =
     useSelector((state: { home: THomeInitialState }) => state.home)
   const [loading, setLoading] = useState(false)
   const [year, setYear] = useState(new Date().getFullYear())
+
   useEffect(() => {
     getHomeData(dispatch, year, setLoading)
   }, [year])
@@ -44,11 +44,11 @@ const Home = () => {
       ) : (
         <div className="w-full h-full relative z-[9996]">
           {years && (
-            <div className="fixed top-[72px] right-2 w-[100px] z-[9996]">
+            <div className="fixed top-[72px] right-2 w-[100px] z-[9996] ">
               <Select
                 label="Année"
                 fullWidth
-                color="secondary"
+                color="primary"
                 variant="flat"
                 size="sm"
                 defaultSelectedKeys={[year + '']}
@@ -307,8 +307,8 @@ const Home = () => {
                 <ChartSlider />
               </div>
             </div>
-            <MountlyPaymentsShart />
-          </div>{' '}
+            {mounthlyYearStatus && <MountlyPaymentsShart mounthlyYearStatus={mounthlyYearStatus} />}
+          </div>
         </div>
       )}
     </>

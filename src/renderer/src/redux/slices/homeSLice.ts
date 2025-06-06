@@ -30,6 +30,9 @@ const homeSlice = createSlice({
     setTopPopularDeleverys(state, action: PayloadAction<THomeInitialState['topPopularDeleverys']>) {
       state.topPopularDeleverys = action.payload
     } ,
+    setMounthlyYearsStatus(state, action: PayloadAction<THomeInitialState['mounthlyYearStatus']>) {
+      state.mounthlyYearStatus = action.payload
+    } ,
     setYears(state,action:PayloadAction<THomeInitialState['years']>){
       state.years=action.payload
     }
@@ -42,6 +45,7 @@ export const {
   setTopPopularProducts,
   setTopPopularOffers,
   setTopPopularDeleverys,
+  setMounthlyYearsStatus,
   setYears
 } = homeSlice.actions
 export const homeReducer = homeSlice.reducer

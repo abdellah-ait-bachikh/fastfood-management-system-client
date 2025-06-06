@@ -1,6 +1,5 @@
 import { Chip, ChipProps, Tooltip } from '@heroui/react'
 import { formatMoneyToMAD, formatShortMoney } from '@renderer/lib/utils'
-import { useState } from 'react'
 
 interface AmounthProps extends ChipProps {
   amounth: number

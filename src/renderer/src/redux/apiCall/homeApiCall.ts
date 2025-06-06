@@ -1,6 +1,7 @@
 import { isAxiosError } from 'axios'
 import {
   setError,
+  setMounthlyYearsStatus,
   setSummary,
   setTopPopularDeleverys,
   setTopPopularOffers,
@@ -22,6 +23,7 @@ export const getHomeData = async (
       dispatch(getTopPopularProducts(year)),
       dispatch(getTopPopularOffers(year)),
       dispatch(getTopRankingDeleverys(year)),
+      dispatch(getmounthlyYearStatus(year)),
       dispatch(getYears())
     ])
   } catch (error) {
@@ -29,6 +31,7 @@ export const getHomeData = async (
     dispatch(setTopPopularProducts(null))
     dispatch(setTopPopularOffers(null))
     dispatch(setTopPopularDeleverys(null))
+    dispatch(setMounthlyYearsStatus(null))
     dispatch(setYears(null))
     if (isAxiosError(error)) {
       if (error.response) {
@@ -83,6 +86,14 @@ export const getTopRankingDeleverys =
     const result = await req.get(`/home/popular-deleverys?year=${year}`)
     if (result.status === 200) {
       dispatch(setTopPopularDeleverys(result.data))
+      cb && cb()
+    }
+  }
+export const getmounthlyYearStatus =
+  (year?: number, cb?: () => void) => async (dispatch: TAppDispatch) => {
+    const result = await req.get(`/home/monthly-year-status?year=${year}`)
+    if (result.status === 200) {
+      dispatch(setMounthlyYearsStatus(result.data))
       cb && cb()
     }
   }
