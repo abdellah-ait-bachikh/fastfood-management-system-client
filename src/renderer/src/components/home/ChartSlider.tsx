@@ -7,18 +7,33 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 
 import PieChart from '../Piechart'
+import { useSelector } from 'react-redux'
+import { THomeInitialState } from '@renderer/lib/types'
 
 const ChartSlider: React.FC = () => {
+  const { topPopularOffers, topPopularProducts } = useSelector(
+    (state: { home: THomeInitialState }) => state.home
+  )
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>
-          <PieChart title="Produits" labels={['A', 'B', 'C']} series={[30, 40, 30]} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <PieChart title="Packes" labels={['X', 'Y', 'Z']} series={[25, 25, 50]} />
-        </SwiperSlide>
-      </Swiper>
+      {topPopularProducts && topPopularOffers && (
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+          <SwiperSlide>
+            <PieChart
+              title="Produits"
+              labels={topPopularProducts?.map((item) => `${item.category.name} ${item.name}`)}
+              series={topPopularProducts?.map((item) => item.quantity)}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <PieChart
+              title="Packes"
+              labels={topPopularOffers?.map((item) => item.name)}
+              series={topPopularOffers?.map((item) => item.quantity)}
+            />
+          </SwiperSlide>
+        </Swiper>
+      )}
     </div>
   )
 }

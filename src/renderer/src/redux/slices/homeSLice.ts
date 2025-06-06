@@ -6,7 +6,9 @@ const initialState: THomeInitialState = {
   error: null,
   topPopularProducts: null,
   topPopularOffers: null,
-  topPopularDeleverys: null
+  topPopularDeleverys: null,
+  mounthlyYearStatus: null,
+  years: null
 }
 
 const homeSlice = createSlice({
@@ -27,10 +29,19 @@ const homeSlice = createSlice({
     },
     setTopPopularDeleverys(state, action: PayloadAction<THomeInitialState['topPopularDeleverys']>) {
       state.topPopularDeleverys = action.payload
+    } ,
+    setYears(state,action:PayloadAction<THomeInitialState['years']>){
+      state.years=action.payload
     }
   }
 })
 
-export const { setSummary, setError, setTopPopularProducts, setTopPopularOffers,setTopPopularDeleverys } =
-  homeSlice.actions
+export const {
+  setSummary,
+  setError,
+  setTopPopularProducts,
+  setTopPopularOffers,
+  setTopPopularDeleverys,
+  setYears
+} = homeSlice.actions
 export const homeReducer = homeSlice.reducer

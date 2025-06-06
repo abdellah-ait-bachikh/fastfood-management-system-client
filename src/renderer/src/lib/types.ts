@@ -34,5 +34,7 @@ export interface THomeInitialState {
       }[]
   topPopularDeleverys:
     | null
-    | { id: number; userName: string; totalMoney: number; paymentsCount: number }[]
+    | { id: number; userName: string; totalMoney: number; paymentsCount: number }[] 
+    mounthlyYearStatus:null | {}[] 
+    years:null |number[]
 }
