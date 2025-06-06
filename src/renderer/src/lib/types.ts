@@ -23,11 +23,16 @@ export interface THomeInitialState {
         quantity: number
         totalMoney: number
       }[]
-  topPopularOffers: null | {
-    id: number
-    name: string
-    quantity: number
-    totalMoney: number
-    imageUri: string
-  }[]
+  topPopularOffers:
+    | null
+    | {
+        id: number
+        name: string
+        quantity: number
+        totalMoney: number
+        imageUri: string
+      }[]
+  topPopularDeleverys:
+    | null
+    | { id: number; userName: string; totalMoney: number; paymentsCount: number }[]
 }

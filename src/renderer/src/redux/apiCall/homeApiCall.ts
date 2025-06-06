@@ -2,6 +2,7 @@ import { isAxiosError } from 'axios'
 import {
   setError,
   setSummary,
+  setTopPopularDeleverys,
   setTopPopularOffers,
   setTopPopularProducts
 } from '../slices/homeSLice'
@@ -17,12 +18,14 @@ export const getHomeData = async (
     await Promise.all([
       dispatch(getSummary()),
       dispatch(getTopPopularProducts()),
-      dispatch(getTopPopularOffers())
+      dispatch(getTopPopularOffers()),
+      dispatch(getTopRankingDeleverys())
     ])
   } catch (error) {
     dispatch(setSummary(null))
     dispatch(setTopPopularProducts(null))
     dispatch(setTopPopularOffers(null))
+    dispatch(setTopPopularDeleverys(null))
     if (isAxiosError(error)) {
       if (error.response) {
         if (error.response.status === 404) {
@@ -63,8 +66,16 @@ export const getTopPopularProducts = (cb?: () => void) => async (dispatch: TAppD
 export const getTopPopularOffers = (cb?: () => void) => async (dispatch: TAppDispatch) => {
   const result = await req.get('/home/popular-offers')
   if (result.status === 200) {
-    console.log(result.data)
     dispatch(setTopPopularOffers(result.data))
     cb && cb()
   }
+}
+
+export const getTopRankingDeleverys = (cb?: () => void) => async (dispatch: TAppDispatch) => {
+  const result = await req.get('/home/popular-deleverys')
+  if (result.status === 200) {
+    dispatch(setTopPopularDeleverys(result.data))
+    cb && cb()
+  }
+  console.log(result)
 }

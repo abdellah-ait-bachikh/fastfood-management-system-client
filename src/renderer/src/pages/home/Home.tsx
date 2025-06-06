@@ -21,7 +21,7 @@ import { getHomeData } from '@renderer/redux/apiCall/homeApiCall'
 
 const Home = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { summary, error, topPopularProducts, topPopularOffers } = useSelector(
+  const { summary, error, topPopularProducts, topPopularOffers, topPopularDeleverys } = useSelector(
     (state: { home: THomeInitialState }) => state.home
   )
   const [loading, setLoading] = useState(false)
@@ -197,97 +197,56 @@ const Home = () => {
             )}
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-2">
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
-              <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
-                <IconComponent Icon={FaStar} /> <span>Livreurs tendance</span>{' '}
-              </h1>
-              <div className="overflow-hidden overflow-y-auto overflow-x-auto max-h-[400px] mt-2">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b text-xl">
-                      <th className="text-left px-2 py-1 text-nowrap tracking-widest">Livreur</th>
-                      <th className="text-center px-2 py-1 text-nowrap tracking-widest">
-                        Quantité
-                      </th>
-                      <th className="text-center px-2 py-1 text-nowrap tracking-widest">
-                        Montant (MAD)
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      {
-                        id: 1,
-                        userName: 'hassan barboch',
-
-                        totalePrice: 32564.32,
-                        quantity: 48953212
-                      },
-                      {
-                        id: 2,
-                        userName: 'abdellah ait bachikh',
-
-                        totalePrice: 65932.32,
-                        quantity: 58563
-                      },
-                      {
-                        id: 3,
-                        userName: 'mohamed chaha',
-
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 4,
-                        userName: 'mohamed chaha',
-
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 5,
-                        userName: 'mohamed chaha',
-
-                        totalePrice: 3658,
-                        quantity: 3256
-                      },
-                      {
-                        id: 6,
-                        userName: 'mohamed chaha',
-
-                        totalePrice: 3658,
-                        quantity: 3256
-                      }
-                    ].map((item) => (
-                      <tr key={item.id} className="hover:bg-gray-200 dark:hover:bg-slate-900">
-                        <td className="text-lg font-semibold px-2 py-1 text-nowrap">
-                          <User
-                            name={item.userName}
-                            avatarProps={{ icon: <FaMotorcycle size={22} /> }}
-                          />
-                        </td>
-                        <td className="px-2 py-2 text-center">
-                          <Quantity
-                            variant="shadow"
-                            classNames={{ content: 'font-semibold' }}
-                            quantity={item.quantity}
-                            color={getQuantityColor(item.quantity)}
-                          />
-                        </td>
-                        <td className="px-2 py-2 text-center">
-                          {
-                            <Amounth
-                              classNames={{ content: 'font-semibold' }}
-                              amounth={item.totalePrice}
-                            />
-                          }
-                        </td>
+            {topPopularDeleverys && (
+              <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
+                <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
+                  <IconComponent Icon={FaStar} /> <span>Livreurs tendance</span>{' '}
+                </h1>
+                <div className="overflow-hidden overflow-y-auto overflow-x-auto max-h-[400px] mt-2">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b text-xl">
+                        <th className="text-left px-2 py-1 text-nowrap tracking-widest">Livreur</th>
+                        <th className="text-center px-2 py-1 text-nowrap tracking-widest">
+                          Quantité
+                        </th>
+                        <th className="text-center px-2 py-1 text-nowrap tracking-widest">
+                          Montant (MAD)
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {topPopularDeleverys.map((item) => (
+                        <tr key={item.id} className="hover:bg-gray-200 dark:hover:bg-slate-900">
+                          <td className="text-lg font-semibold px-2 py-1 text-nowrap">
+                            <User
+                              name={item.userName}
+                              avatarProps={{ icon: <FaMotorcycle size={22} /> }}
+                            />
+                          </td>
+                          <td className="px-2 py-2 text-center">
+                            <Quantity
+                              variant="shadow"
+                              classNames={{ content: 'font-semibold' }}
+                              quantity={item.paymentsCount}
+                              color={getQuantityColor(item.paymentsCount)}
+                            />
+                          </td>
+                          <td className="px-2 py-2 text-center">
+                            {
+                              <Amounth
+                                classNames={{ content: 'font-semibold' }}
+                                amounth={item.totalMoney}
+                              />
+                            }
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>{' '}
+            )}
             <div>
               <ChartSlider />
             </div>
