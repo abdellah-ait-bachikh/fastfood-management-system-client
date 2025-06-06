@@ -21,6 +21,13 @@ export interface THomeInitialState {
         name: string
         category: { name: string; imageUri: string }
         quantity: number
-        totaleMoney: number
+        totalMoney: number
       }[]
+  topPopularOffers: null | {
+    id: number
+    name: string
+    quantity: number
+    totalMoney: number
+    imageUri: string
+  }[]
 }
