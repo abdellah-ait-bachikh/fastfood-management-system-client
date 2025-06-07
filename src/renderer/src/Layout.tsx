@@ -8,12 +8,12 @@ const Layout = () => {
       <Aside />
       <section className="flex-1 flex flex-col min-h-screen">
         <Header />
-        <main className="bg-gray-100 dark:bg-slate-900  flex-1 transition-all z-[9997] p-2 overflow-hidden">
+        <main className="bg-gray-100 dark:bg-gray-900 flex-1 transition-all z-[9997] p-2 overflow-hidden">
           <Outlet />
         </main>
       </section>
       <div className="z-[9999]">
-        <ToastProvider placement="top-right" />
+        <ToastProvider placement="top-right" toastProps={{variant:'bordered'}} maxVisibleToasts={3}/>
       </div>
     </HeroUIProvider>
   )

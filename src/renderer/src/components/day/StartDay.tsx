@@ -22,12 +22,12 @@ const StartDay = () => {
     }
   }
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-2 ">
       {currentDay && (
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="bg-white  dark:bg-slate-800 p-3 rounded-xl flex flex-col items-center w-fit gap-2 overflow-hidden"
+          className="bg-white  dark:bg-gray-950 p-3 rounded-xl flex flex-col items-center w-fit gap-2 overflow-hidden"
         >
           <Chip size="lg" classNames={{ content: 'font-semibold' }} variant="flat">
             Demarée Le {getFullDate(new Date(currentDay.startAt))} à{' '}
@@ -37,13 +37,14 @@ const StartDay = () => {
           <Timer startAt={new Date(currentDay.startAt)} />
         </motion.div>
       )}
-      <div className="flex justify-center">
+      <div className="flex justify-center w-[300px]">
         {currentDay ? (
           <Button
             color="danger"
             className="font-semibold"
             isLoading={loadingStop}
             onPress={handelSTopDay}
+            fullWidth
           >
             Stopé
           </Button>
@@ -53,6 +54,7 @@ const StartDay = () => {
             className="font-semibold"
             onPress={handelStartDay}
             isLoading={loadingStart}
+            fullWidth
           >
             Demarée
           </Button>

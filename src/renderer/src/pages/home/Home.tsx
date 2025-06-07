@@ -73,7 +73,7 @@ const Home = () => {
                   showArrow
                   placement="bottom"
                 >
-                  <div className="rounded-2xl border-2 border-slate-400 bg-success-300 p-4 font-bold text-xl flex flex-col items-start">
+                  <div className="rounded-2xl  bg-success-300 p-4 font-bold text-xl flex flex-col items-start">
                     <span className="tracking-widest">Vent</span>
                     <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                       {formatMoneyToMAD(summary.totaleMoney)}
@@ -87,7 +87,7 @@ const Home = () => {
                   showArrow
                   placement="bottom"
                 >
-                  <div className="rounded-2xl border-2 border-slate-400 bg-default-300 p-4 font-bold text-xl flex flex-col items-start">
+                  <div className="rounded-2xl  bg-default-300 p-4 font-bold text-xl flex flex-col items-start">
                     <span className="tracking-widest">Commandes</span>
                     <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                       {formatQuantity(summary.ordersCount)}
@@ -101,7 +101,7 @@ const Home = () => {
                   showArrow
                   placement="bottom"
                 >
-                  <div className="rounded-2xl border-2 border-slate-400 bg-warning-400 p-4 font-bold text-xl flex flex-col items-start">
+                  <div className="rounded-2xl  bg-warning-400 p-4 font-bold text-xl flex flex-col items-start">
                     <span className="tracking-widest">livraison</span>
                     <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                       {formatMoneyToMAD(summary.totalDeleveryMoney)}
@@ -115,7 +115,7 @@ const Home = () => {
                   showArrow
                   placement="bottom"
                 >
-                  <div className="rounded-2xl border-2 border-slate-400 bg-danger-400 p-4 font-bold text-xl flex flex-col items-start">
+                  <div className="rounded-2xl  bg-danger-400 p-4 font-bold text-xl flex flex-col items-start">
                     <span className="tracking-widest">Journée</span>
                     <span className="text-xl w-full text-nowrap text-ellipsis overflow-hidden tracking-wider">
                       {formatQuantity(summary.dayCounts)}
@@ -126,7 +126,7 @@ const Home = () => {
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 mt-4 gap-2">
               {topPopularProducts && (
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
+                <div className="bg-white dark:bg-gray-950 rounded-xl p-2 shadow relative flex flex-col ">
                   <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
                     <IconComponent Icon={LuAlignStartVertical} />{' '}
                     <span>Produits populaires</span>{' '}
@@ -184,7 +184,7 @@ const Home = () => {
                 </div>
               )}
               {topPopularOffers && (
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
+                <div className="bg-white dark:bg-gray-950 rounded-xl p-2 shadow relative flex flex-col ">
                   <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
                     <IconComponent Icon={LuAlignStartVertical} />{' '}
                     <span>Packes populaires</span>{' '}
@@ -242,7 +242,7 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 mt-4 gap-2">
               {topPopularDeleverys && (
-                <div className="bg-white dark:bg-slate-800 rounded-xl p-2 shadow relative flex flex-col ">
+                <div className="bg-white dark:bg-gray-950 rounded-xl p-2 shadow relative flex flex-col ">
                   <h1 className="text-2xl font-semibold sticky top-0  flex items-center gap-2">
                     <IconComponent Icon={FaStar} /> <span>Livreurs tendance</span>{' '}
                   </h1>

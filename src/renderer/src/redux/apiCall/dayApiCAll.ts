@@ -95,7 +95,7 @@ export const stopeDay =
         addToast({
           title: 'Journée',
           description: response.data.message,
-          color: 'success'
+          color: 'success',
         })
         cb && cb()
       }

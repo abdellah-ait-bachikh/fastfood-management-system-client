@@ -54,7 +54,7 @@ const AvatarDropDown = () => {
           scale: avatarDropDownOpen ? 1 : 0,
           opacity: avatarDropDownOpen ? 1 : 0,
         }}
-        className="absolute top-[60px] right-full p-2 rounded-xl bg-white dark:bg-slate-800 flex flex-col gap-1  w-[200px] "
+        className="absolute top-[60px] right-full p-2 rounded-xl bg-white dark:bg-gray-950 flex flex-col gap-1  w-[200px] "
         ref={dropDownRef}
       >
         {avatarDropdownElements.map((item) =>

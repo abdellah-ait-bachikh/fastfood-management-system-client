@@ -16,7 +16,7 @@ const Aside = () => {
   return (
     <aside
       className={classNames(
-        "h-screen fixed md:sticky top-0 left-0 bg-white dark:bg-slate-800 overflow-hidden  transition-all z-[9999] ",
+        "h-screen fixed md:sticky top-0 left-0 bg-white dark:bg-black overflow-hidden  transition-all z-[9999] ",
         {
           "w-screen md:w-60": asideOpen,
           "w-0 md:w-[68px]": !asideOpen,
