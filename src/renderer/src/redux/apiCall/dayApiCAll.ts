@@ -2,7 +2,7 @@ import { TAppDispatch } from '@renderer/lib/types'
 import { isAxiosError } from 'axios'
 import { setCurrentDay, setError } from '../slices/daySlice'
 import { req } from '@renderer/lib/utils'
-import { addToast, toast } from '@heroui/react'
+import { addToast } from '@heroui/react'
 
 export const getDaysData = async (
   dispatch: TAppDispatch,
