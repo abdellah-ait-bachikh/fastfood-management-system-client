@@ -12,7 +12,9 @@ const Layout = () => {
           <Outlet />
         </main>
       </section>
-      <ToastProvider />
+      <div className="z-[9999]">
+        <ToastProvider placement="top-right" />
+      </div>
     </HeroUIProvider>
   )
 }

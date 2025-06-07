@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TDayInitialState } from '@renderer/lib/types'
 
-const initialState: TDayInitialState = { currentDay: null,error:null }
+const initialState: TDayInitialState = { currentDay: undefined,error:null }
 
 const daySlice = createSlice({
   name: 'day',

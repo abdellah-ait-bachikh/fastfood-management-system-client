@@ -7,29 +7,33 @@ import { useDispatch, useSelector } from 'react-redux'
 const Days = () => {
   const dispatch = useDispatch<TAppDispatch>()
   const { error } = useSelector((state: { day: TDayInitialState }) => state.day)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true) // default to true
+
   useEffect(() => {
     getDaysData(dispatch, setLoading)
   }, [])
+
+  if (loading) {
+    return (
+      <div className="h-[calc(100vh-50px)] w-full flex items-center justify-center">
+        <Spinner
+          size="lg"
+          color="primary"
+          label="Chargement"
+          classNames={{ label: 'font-semibold' }}
+        />
+      </div>
+    )
+  }
+
+  if (error) {
+    return <Alert title="Erreur" description={error} color="danger" />
+  }
+
   return (
-    <>
-      {loading ? (
-        <div className="h-[calc(100vh-50px)] w-full flex items-center justify-center">
-          <Spinner
-            size="lg"
-            color="primary"
-            label="Chargement"
-            classNames={{ label: 'font-semibold' }}
-          />
-        </div>
-      ) : error ? (
-        <Alert title="Error" description={error} color="danger" />
-      ) : (
-        <div className="w-full h-full">
-          <StartDay />
-        </div>
-      )}
-    </>
+    <div className="w-full h-full">
+      <StartDay />
+    </div>
   )
 }
 

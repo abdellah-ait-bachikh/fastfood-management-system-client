@@ -46,7 +46,7 @@ export interface THomeInitialState {
 }
 
 export interface TDayInitialState {
-  currentDay: null | {
+  currentDay: null|undefined | {
     id: number
     startAt: string
     stopAt: string | null
