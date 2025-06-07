@@ -44,3 +44,12 @@ export interface THomeInitialState {
       }[]
   years: null | number[]
 }
+
+export interface TDayInitialState {
+  currentDay: null | {
+    id: number
+    startAt: string
+    stopAt: string | null
+  } 
+  error : null | string
+}

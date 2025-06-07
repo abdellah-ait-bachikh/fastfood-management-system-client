@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { HeroUIProvider } from '@heroui/react'
+import { HeroUIProvider, ToastProvider } from '@heroui/react'
 import Aside from './components/Aside'
 import Header from './components/Header'
 const Layout = () => {
@@ -12,6 +12,7 @@ const Layout = () => {
           <Outlet />
         </main>
       </section>
+      <ToastProvider />
     </HeroUIProvider>
   )
 }
