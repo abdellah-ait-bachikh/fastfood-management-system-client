@@ -1,7 +1,7 @@
-import axios from "axios"
-export const app_uri = import.meta.env.VITE_API_URI;
+import axios from 'axios'
+export const app_uri = import.meta.env.VITE_API_URI
 
-export const req = axios.create({baseURL:app_uri})
+export const req = axios.create({ baseURL: app_uri })
 
 export const formatMoneyToMAD = (amount: number) => {
   const formatted = new Intl.NumberFormat('en-US', {
@@ -20,7 +20,7 @@ export const getQuantityColor = (quantity: number) => {
   } else if (quantity > 0) {
     return 'warning'
   } else {
-    return "danger"
+    return 'danger'
   }
 }
 
@@ -35,9 +35,9 @@ export const formatQuantity = (quantity: number): string => {
   return `${quantity}`
 }
 
-export const formatWithSeparators=(value: number): string =>{
+export const formatWithSeparators = (value: number): string => {
   return value.toLocaleString('en-US', {
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 0
   })
 }
 
@@ -67,4 +67,33 @@ export const formatShortMoney = (amount: number): string => {
   const firstDigit = Math.floor(value).toString()
 
   return firstDigit + ' ' + suffix
+}
+
+export const getFullTime = (dateInput: Date) => {
+  const date = new Date(dateInput)
+  return `${date.getHours()}:${date.getMinutes()}`
+}
+
+export const getFullDate = (dateInput: Date) => {
+  const date = new Date(dateInput)
+  const day = String(date.getDay()).padStart(2, '0')
+  const mounth = String(date.getMonth() + 1).padStart(2, '0')
+  const year = String(date.getFullYear())
+  return `${day}/${mounth}/${year}`
+}
+
+export const getTimeDifference = (dateInput: Date): string => {
+  const now = new Date()
+  const diffMs = now.getTime() - dateInput.getTime()
+  const diffS = Math.floor(diffMs / 1000)
+  const diffM = Math.floor(diffMs / (1000 * 60))
+  const diffH = Math.floor(diffMs / (1000 * 60 * 60))
+  const diffD = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+  const diffMo = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30))
+
+  if (Math.abs(diffS) < 60) return `${Math.abs(diffS)} s`
+  if (Math.abs(diffM) < 60) return `${Math.abs(diffM)} m`
+  if (Math.abs(diffH) < 24) return `${Math.abs(diffH)} h`
+  if (Math.abs(diffD) < 30) return `${Math.abs(diffD)} j`
+  return `${Math.abs(diffMo)} mois`
 }
