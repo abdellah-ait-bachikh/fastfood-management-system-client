@@ -4,7 +4,10 @@ import Aside from './components/Aside'
 import Header from './components/Header'
 const Layout = () => {
   return (
-    <HeroUIProvider className="w-full flex items-start z-[9999] text-black dark:text-white">
+    <HeroUIProvider
+      locale="fr"
+      className="w-full flex items-start z-[9999] text-black dark:text-white"
+    >
       <Aside />
       <section className="flex-1 flex flex-col min-h-screen">
         <Header />
@@ -13,7 +16,11 @@ const Layout = () => {
         </main>
       </section>
       <div className="z-[9999]">
-        <ToastProvider placement="top-right" toastProps={{variant:'bordered'}} maxVisibleToasts={3}/>
+        <ToastProvider
+          placement="top-right"
+          toastProps={{ variant: 'bordered' }}
+          maxVisibleToasts={3}
+        />
       </div>
     </HeroUIProvider>
   )

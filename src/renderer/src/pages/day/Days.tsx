@@ -1,38 +1,25 @@
-import { Alert, Spinner } from '@heroui/react'
+import { DatePicker } from '@heroui/react'
 import StartDay from '@renderer/components/day/StartDay'
-import { TAppDispatch, TDayInitialState } from '@renderer/lib/types'
-import { getDaysData } from '@renderer/redux/apiCall/dayApiCAll'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { TAppDispatch } from '@renderer/lib/types'
+import { useDispatch } from 'react-redux'
 const Days = () => {
-  const dispatch = useDispatch<TAppDispatch>()
-  const { error } = useSelector((state: { day: TDayInitialState }) => state.day)
-  const [loading, setLoading] = useState(true) // default to true
-
-  useEffect(() => {
-    getDaysData(dispatch, setLoading)
-  }, [])
-
-  if (loading) {
-    return (
-      <div className="h-[calc(100vh-50px)] w-full flex items-center justify-center">
-        <Spinner
-          size="lg"
-          color="primary"
-          label="Chargement"
-          classNames={{ label: 'font-semibold' }}
-        />
-      </div>
-    )
-  }
-
-  if (error) {
-    return <Alert title="Erreur" description={error} color="danger" />
-  }
+  // const dispatch = useDispatch<TAppDispatch>()
 
   return (
     <div className="w-full h-full">
       <StartDay />
+      <div className="bg-white dark:bg-gray-950 p-3 rounded-xl mt-3">
+        <div className="flex items-center justify-between gap-3">
+          <h1 className="text-nowrap font-semibold text-xl">List Des Jrournée</h1>
+          <div>
+            <DatePicker
+              aria-label="filter Date picker"
+              showMonthAndYearPickers
+              onChange={(value) => console.log(value?.toString())}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

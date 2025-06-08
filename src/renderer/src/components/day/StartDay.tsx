@@ -1,16 +1,18 @@
-import { Alert, Button, Chip } from '@heroui/react'
+import { Alert, Button, Chip, Spinner } from '@heroui/react'
 import IconComponent from '@renderer/components/IconComponent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { LuArrowDownFromLine } from 'react-icons/lu'
 import { motion } from 'framer-motion'
 import Timer from './Timer'
 import { getFullDate, getFullTime } from '@renderer/lib/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { TAppDispatch, TDayInitialState } from '@renderer/lib/types'
-import { createDay, stopeDay } from '@renderer/redux/apiCall/dayApiCAll'
+import { createDay, getLastDay, stopeDay } from '@renderer/redux/apiCall/dayApiCAll'
 const StartDay = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { currentDay } = useSelector((state: { day: TDayInitialState }) => state.day)
+  const { currentDay, error } = useSelector((state: { day: TDayInitialState }) => state.day)
+  const [loadingLatestDay, setLoadingLatestDay] = useState(true) // default to true
+
   const [loadingStart, setLoadingStart] = useState(false)
   const [loadingStop, setLoadingStop] = useState(false)
   const handelStartDay = () => {
@@ -21,6 +23,26 @@ const StartDay = () => {
       dispatch(stopeDay(currentDay.id, setLoadingStop))
     }
   }
+  useEffect(() => {
+    dispatch(getLastDay(setLoadingLatestDay))
+  }, [])
+  if (loadingLatestDay) {
+    return (
+      <div className="h-[200px] w-full flex items-center justify-center">
+        <Spinner
+          size="lg"
+          color="primary"
+          label="Chargement"
+          classNames={{ label: 'font-semibold' }}
+        />
+      </div>
+    )
+  }
+
+  if (error) {
+    return <Alert title="Erreur" description={error} color="danger" />
+  }
+
   return (
     <div className="flex flex-col items-center gap-2 ">
       {currentDay && (
