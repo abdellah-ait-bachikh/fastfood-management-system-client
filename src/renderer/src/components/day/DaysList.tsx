@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 const DaysList = () => {
   const [page, setPage] = useState<number>(1)
-  const [rowsPerPage, setRowsPerPage] = useState<string>('all')
+  const [rowsPerPage, setRowsPerPage] = useState<string>('Tous')
   const [filterDate, setFilterDate] = useState<Date | undefined>(undefined)
   const [loading, setLoading] = useState(false)
 
@@ -56,14 +56,15 @@ const DaysList = () => {
                       aria-hidden="false"
                       label="Line"
                       size="sm"
+                      color='primary'
                       fullWidth={false}
                       defaultSelectedKeys={[rowsPerPage]}
-                      onChange={(e) => setRowsPerPage(e.target.value)}
+                      onChange={(e) => setRowsPerPage(e.target.value == 'Tous' ? 'all' : e.target.value)}
                       value={rowsPerPage}
-                      variant="faded"
+                      variant="flat"
                     >
                       {[5, 10, 20, 'all'].map((item) => (
-                        <SelectItem key={item + ''} textValue={item + ''}>
+                        <SelectItem key={item == 'all' ? 'Tous' : item+''} textValue={item == 'all' ? 'Tous' : item+''}>
                           {item == 'all' ? 'Tous' : item}
                         </SelectItem>
                       ))}
