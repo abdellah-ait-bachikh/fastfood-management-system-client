@@ -46,10 +46,33 @@ export interface THomeInitialState {
 }
 
 export interface TDayInitialState {
-  currentDay: null|undefined | {
-    id: number
-    startAt: string
-    stopAt: string | null
-  } 
-  error : null | string
+  currentDay:
+    | null
+    
+    | {
+        id: number
+        startAt: string
+        stopAt: string | null
+      }
+  error: null | string
+  days:
+    | null
+    | {
+        totalPaymentsMoney: number
+        totalDeleveryMoney: number
+        _count: {
+          paymentsProducts: number
+          paymentsOffers: number
+        }
+        id: number
+        startAt: Date
+        stopAt: Date | null
+      }[]
+  pagination: null | {
+    page: number
+    rowsPerPage: number
+    totalPages: number
+    totalResult: number
+    totalFilterResult: number
+  }
 }
