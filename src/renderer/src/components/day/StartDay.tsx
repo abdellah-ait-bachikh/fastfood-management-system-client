@@ -28,7 +28,7 @@ const StartDay = () => {
   }, [])
   if (loadingLatestDay) {
     return (
-      <div className="h-[200px] w-full flex items-center justify-center">
+      <div className=" w-full flex items-center justify-center">
         <Spinner
           size="lg"
           color="primary"

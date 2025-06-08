@@ -5,7 +5,10 @@ const Days = () => {
   // const dispatch = useDispatch<TAppDispatch>()
   return (
     <div className="w-full h-full ">
+      <div className='h-[168]'>
+
       <StartDay />
+      </div>
       <DaysList />
     </div>
   )
