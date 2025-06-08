@@ -4,6 +4,10 @@
 * {
   font-family: 'Roboto Mono', monospace;
 }
+body{
+  @apply overflow-x-clip;
+
+}
 div#root {
   width: 100%;
 }

@@ -6,7 +6,7 @@ import {
   formatMoneyToMAD
 } from '../../lib/utils'
 import Quantity from '@renderer/components/Quantity'
-import Amounth from '@renderer/components/Money'
+import Amounth from '@renderer/components/Amounth'
 import IconComponent from '@renderer/components/IconComponent'
 import { LuAlignStartVertical } from 'react-icons/lu'
 import { FaStar } from 'react-icons/fa6'
@@ -30,6 +30,8 @@ const Home = () => {
   }, [year])
   return (
     <>
+    
+    
       {loading ? (
         <div className="h-[calc(100vh-50px)] w-full flex items-center justify-center">
           <Spinner

@@ -76,10 +76,10 @@ export const getFullTime = (dateInput: Date) => {
 
 export const getFullDate = (dateInput: Date) => {
   const date = new Date(dateInput)
-  const day = String(date.getDay()).padStart(2, '0')
-  const mounth = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')       
+  const month = String(date.getMonth() + 1).padStart(2, '0')
   const year = String(date.getFullYear())
-  return `${day}/${mounth}/${year}`
+  return `${day}/${month}/${year}`
 }
 
 export const getTimeDifference = (dateInput: Date): string => {
