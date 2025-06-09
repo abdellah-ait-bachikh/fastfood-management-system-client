@@ -97,3 +97,18 @@ export const getTimeDifference = (dateInput: Date): string => {
   if (Math.abs(diffD) < 30) return `${Math.abs(diffD)} j`
   return `${Math.abs(diffMo)} mois`
 }
+export const getTimeDifferenceFromTo = (from: Date,to: Date): string => {
+ 
+  const diffMs = to.getTime() - from.getTime()
+  const diffS = Math.floor(diffMs / 1000)
+  const diffM = Math.floor(diffMs / (1000 * 60))
+  const diffH = Math.floor(diffMs / (1000 * 60 * 60))
+  const diffD = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+  const diffMo = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30))
+
+  if (Math.abs(diffS) < 60) return `${Math.abs(diffS)} s`
+  if (Math.abs(diffM) < 60) return `${Math.abs(diffM)} m`
+  if (Math.abs(diffH) < 24) return `${Math.abs(diffH)} h`
+  if (Math.abs(diffD) < 30) return `${Math.abs(diffD)} j`
+  return `${Math.abs(diffMo)} mois`
+}

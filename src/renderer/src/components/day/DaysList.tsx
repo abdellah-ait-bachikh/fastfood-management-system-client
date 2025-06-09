@@ -1,5 +1,5 @@
-import { Chip, DatePicker, Pagination, Select, SelectItem, Spinner } from '@heroui/react'
-import { getFullDate, getFullTime } from '@renderer/lib/utils'
+import { DatePicker, Pagination, Select, SelectItem, Spinner } from '@heroui/react'
+import { getFullDate, getFullTime, getTimeDifference, getTimeDifferenceFromTo } from '@renderer/lib/utils'
 import Quantity from '../Quantity'
 import Amounth from '../Amounth'
 import { useEffect, useState } from 'react'
@@ -10,7 +10,7 @@ import Timer from './Timer'
 
 const DaysList = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { days, pagination } = useSelector((state: { day: TDayInitialState }) => state.day)
+  const { days, pagination,error } = useSelector((state: { day: TDayInitialState }) => state.day)
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<string>('10')
   const [dateFilter, setDateFilter] = useState<Date | undefined>(undefined)
@@ -102,9 +102,9 @@ const DaysList = () => {
                         </td>
                         <td className="font-semibold text-center px-4 py-3 text-nowrap tracking-wider">
                           {item.stopAt ? (
-                            `${getFullDate(item.stopAt)} à ${getFullTime(item.stopAt)}`
+                            `${getFullDate(item.stopAt)} à ${getFullTime(item.stopAt)} (${getTimeDifferenceFromTo(new Date(item.startAt),new Date(item.stopAt))})`
                           ) : (
-                            <Timer startAt={new Date(item.startAt)} />
+                            <Timer startAt={new Date(item.startAt)}  />
                           )}
                         </td>
                         <td className="font-semibold text-center px-4 py-3 text-nowrap tracking-wider">

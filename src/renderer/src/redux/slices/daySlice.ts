@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TAppDispatch, TDayInitialState } from '@renderer/lib/types'
+import {TDayInitialState } from '@renderer/lib/types'
 
 const initialState: TDayInitialState = {
   currentDay: null,
