@@ -1,5 +1,10 @@
-import { DatePicker, Pagination, Select, SelectItem, Spinner } from '@heroui/react'
-import { getFullDate, getFullTime, getTimeDifference, getTimeDifferenceFromTo } from '@renderer/lib/utils'
+import { Badge, DatePicker, Pagination, Select, SelectItem, Spinner } from '@heroui/react'
+import {
+  getFullDate,
+  getFullTime,
+  getTimeDifference,
+  getTimeDifferenceFromTo
+} from '@renderer/lib/utils'
 import Quantity from '../Quantity'
 import Amounth from '../Amounth'
 import { useEffect, useState } from 'react'
@@ -7,10 +12,12 @@ import { getDaysWithPaymentsMoneyCount } from '@renderer/redux/apiCall/dayApiCAl
 import { useDispatch, useSelector } from 'react-redux'
 import { TAppDispatch, TDayInitialState } from '@renderer/lib/types'
 import Timer from './Timer'
+import { IoCloseOutline } from 'react-icons/io5'
+import IconComponent from '../IconComponent'
 
 const DaysList = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { days, pagination,error } = useSelector((state: { day: TDayInitialState }) => state.day)
+  const { days, pagination, error } = useSelector((state: { day: TDayInitialState }) => state.day)
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<string>('10')
   const [dateFilter, setDateFilter] = useState<Date | undefined>(undefined)
@@ -27,11 +34,27 @@ const DaysList = () => {
           List Des Jrournée
         </h1>
         <div>
-          <DatePicker
-            aria-label="filter Date picker"
-            showMonthAndYearPickers
-            onChange={(value) => setDateFilter(!value ? undefined : new Date(value.toString()))}
-          />
+          <Badge
+            content={<IconComponent Icon={IoCloseOutline} />}
+            className="cursor-pointer"
+            onClick={() => setDateFilter(undefined)}
+            isInvisible={dateFilter === undefined}
+            
+          >
+            {/* <DatePicker
+              aria-label="filter Date picker"
+
+              showMonthAndYearPickers
+              onChange={(value) => setDateFilter(!value ? undefined : new Date(value.toString()))}
+            /> */}
+            <div className='p-1'>
+            <input
+              type="date"
+              onChange={(e) =>
+                setDateFilter(!e.target.value ? undefined : new Date(e.target.value))
+              }
+            /></div>
+          </Badge>
         </div>
       </div>
       {loading ? (
@@ -102,9 +125,9 @@ const DaysList = () => {
                         </td>
                         <td className="font-semibold text-center px-4 py-3 text-nowrap tracking-wider">
                           {item.stopAt ? (
-                            `${getFullDate(item.stopAt)} à ${getFullTime(item.stopAt)} (${getTimeDifferenceFromTo(new Date(item.startAt),new Date(item.stopAt))})`
+                            `${getFullDate(item.stopAt)} à ${getFullTime(item.stopAt)} (${getTimeDifferenceFromTo(new Date(item.startAt), new Date(item.stopAt))})`
                           ) : (
-                            <Timer startAt={new Date(item.startAt)}  />
+                            <Timer startAt={new Date(item.startAt)} />
                           )}
                         </td>
                         <td className="font-semibold text-center px-4 py-3 text-nowrap tracking-wider">
