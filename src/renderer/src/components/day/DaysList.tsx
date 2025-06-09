@@ -1,10 +1,5 @@
-import { Badge, DatePicker, Pagination, Select, SelectItem, Spinner } from '@heroui/react'
-import {
-  getFullDate,
-  getFullTime,
-  getTimeDifference,
-  getTimeDifferenceFromTo
-} from '@renderer/lib/utils'
+import { Badge, Button, Pagination, Select, SelectItem, Spinner } from '@heroui/react'
+import { getFullDate, getFullTime, getTimeDifferenceFromTo } from '@renderer/lib/utils'
 import Quantity from '../Quantity'
 import Amounth from '../Amounth'
 import { useEffect, useState } from 'react'
@@ -14,10 +9,13 @@ import { TAppDispatch, TDayInitialState } from '@renderer/lib/types'
 import Timer from './Timer'
 import { IoCloseOutline } from 'react-icons/io5'
 import IconComponent from '../IconComponent'
+import { FaEye, FaTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import ModaleDelete from '../ModaleDelete'
 
 const DaysList = () => {
   const dispatch = useDispatch<TAppDispatch>()
-  const { days, pagination, error } = useSelector((state: { day: TDayInitialState }) => state.day)
+  const { days, pagination } = useSelector((state: { day: TDayInitialState }) => state.day)
   const [page, setPage] = useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = useState<string>('10')
   const [dateFilter, setDateFilter] = useState<Date | undefined>(undefined)
@@ -39,7 +37,6 @@ const DaysList = () => {
             className="cursor-pointer"
             onClick={() => setDateFilter(undefined)}
             isInvisible={dateFilter === undefined}
-            
           >
             {/* <DatePicker
               aria-label="filter Date picker"
@@ -47,13 +44,14 @@ const DaysList = () => {
               showMonthAndYearPickers
               onChange={(value) => setDateFilter(!value ? undefined : new Date(value.toString()))}
             /> */}
-            <div className='p-1'>
-            <input
-              type="date"
-              onChange={(e) =>
-                setDateFilter(!e.target.value ? undefined : new Date(e.target.value))
-              }
-            /></div>
+            <div className="p-1">
+              <input
+                type="date"
+                onChange={(e) =>
+                  setDateFilter(!e.target.value ? undefined : new Date(e.target.value))
+                }
+              />
+            </div>
           </Badge>
         </div>
       </div>
@@ -68,13 +66,12 @@ const DaysList = () => {
         </div>
       ) : (
         <>
-          {' '}
           {pagination && days && (
             <div className="mt-3">
-              <div className="overflow-auto max-h-[500px] relative">
-                <table className="w-full rounded-xl overflow-hidden">
+              <div className="overflow-auto max-h-[500px] ">
+                <table className="w-full rounded-xl overflow-hidden ">
                   <thead className="bg-gray-100/70 dark:bg-gray-900 ">
-                    <tr className="tracking-widest sticky top-0">
+                    <tr className="tracking-widest ">
                       <th className=" font-semibold text-left text-md px-4 py-3 text-nowrap">
                         Départ
                       </th>
@@ -141,7 +138,21 @@ const DaysList = () => {
                         <td className="font-semibold text-center px-4 py-3 text-nowrap tracking-wider">
                           <Amounth amounth={item.totalDeleveryMoney} />
                         </td>
-                        <td className="font-semibold text-center px-4 py-3 "></td>
+                        <td className="font-semibold text-center px-4 py-3 w-full">
+                          <div className="flex items-center justify-center gap-3">
+                            <Button
+                              color="primary"
+                              isIconOnly
+                              variant="ghost"
+                              radius="lg"
+                              as={Link}
+                              to={`/days/show/${item.id}`}
+                            >
+                              <IconComponent Icon={FaEye} className="text-xl" />
+                            </Button>
+                           <ModaleDelete id={item.id} />
+                          </div>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
