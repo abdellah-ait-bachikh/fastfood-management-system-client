@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {TDayInitialState } from '@renderer/lib/types'
+import { TDayInitialState } from '@renderer/lib/types'
 
 const initialState: TDayInitialState = {
   currentDay: null,
@@ -61,9 +61,15 @@ const daySlice = createSlice({
           item.id === action.payload.id ? action.payload : item
         )
       }
+    },
+    removeDay(state, action: PayloadAction<number>) {
+      if (state.currentDay && action.payload === state.currentDay.id) {
+        state.currentDay = null
+      }
     }
   }
 })
 
-export const { setCurrentDay, setError, setDays, setPagination, addDay,addStopedDay } = daySlice.actions
+export const { setCurrentDay, setError, setDays, setPagination, addDay, addStopedDay, removeDay } =
+  daySlice.actions
 export const dayReducer = daySlice.reducer

@@ -150,7 +150,12 @@ const DaysList = () => {
                             >
                               <IconComponent Icon={FaEye} className="text-xl" />
                             </Button>
-                           <ModaleDelete id={item.id} />
+                            <ModaleDelete
+                              id={item.id}
+                              dateFilter={dateFilter}
+                              page={page}
+                              rowsPerPage={rowsPerPage}
+                            />
                           </div>
                         </td>
                       </tr>

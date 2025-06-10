@@ -3,6 +3,7 @@ import { isAxiosError } from 'axios'
 import {
   addDay,
   addStopedDay,
+  removeDay,
   setCurrentDay,
   setDays,
   setError,
@@ -165,6 +166,59 @@ export const stopeDay =
         }
       } else {
         dispatch(setError('Erreur inconnue'))
+      }
+      console.log(error)
+    } finally {
+      setLoading && setLoading(false)
+    }
+  }
+
+export const deleteDay =
+  (
+    id: number,
+    setLoading: (value: boolean) => void,
+    q: { rowsPerPage: string | undefined; dateFilter: Date | undefined; page: number | undefined },
+    cb: () => void,
+    {doCbIsFaled}:{doCbIsFaled:boolean}
+  ) =>
+  async (dispatch: TAppDispatch) => {
+    setLoading(true)
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 3000))
+      const response = await req.delete(
+        `/days/${id}?rowsPerPage=${q.rowsPerPage}&dateFilter=${q.dateFilter}&page=${q.page}`
+      )
+      if (response.status === 200) {
+        addToast({
+          title: 'Journée',
+          description: response.data.message,
+          color: 'success'
+        })
+        dispatch(removeDay(id))
+        dispatch(setDays(response.data.days))
+      }
+    } catch (error) {
+      doCbIsFaled && cb && cb()
+      if (isAxiosError(error)) {
+        if (error.response) {
+          addToast({
+            title: 'Ereur',
+            description: error.response.data.message,
+            color: 'danger'
+          })
+        } else {
+          addToast({
+            title: 'Ereur',
+            description: 'Erreur réseau : aucune réponse du serveur',
+            color: 'danger'
+          })
+        }
+      } else {
+        addToast({
+          title: 'Ereur',
+          description: 'Erreur inconnue',
+          color: 'danger'
+        })
       }
       console.log(error)
     } finally {
