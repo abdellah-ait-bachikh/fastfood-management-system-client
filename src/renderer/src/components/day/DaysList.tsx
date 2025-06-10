@@ -12,6 +12,7 @@ import IconComponent from '../IconComponent'
 import { FaEye, FaTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import ModaleDelete from '../ModaleDelete'
+import ModaleDeleteMany from '../ModaleDeleteMany'
 
 const DaysList = () => {
   const dispatch = useDispatch<TAppDispatch>()
@@ -88,6 +89,8 @@ const DaysList = () => {
                         Livraisant
                       </th>
                       <th className="font-semibold text-md  px-4 py-3 text-nowrap w-full text-end">
+                        <div className='flex items-center gap-3 w-full justify-end'>
+                          <ModaleDeleteMany dateFilter={dateFilter} ids={[]} page={page} rowsPerPage={rowsPerPage} setSelectedItems={([])=>{}}  />
                         <Select
                           aria-hidden="false"
                           label="Line"
@@ -110,7 +113,7 @@ const DaysList = () => {
                               {item == 'all' ? 'Tous' : item}
                             </SelectItem>
                           ))}
-                        </Select>
+                        </Select></div>
                       </th>
                     </tr>
                   </thead>

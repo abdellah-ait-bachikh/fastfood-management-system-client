@@ -18,12 +18,12 @@ const ModaleDelete = ({
   rowsPerPage: string | undefined
 }) => {
   const dispatch = useDispatch<TAppDispatch>()
-  const [selectedItem, setSelectedItem] = useState<null | number>(null)
+  const [selectedId, setSelectedId] = useState<null | number>(null)
   const [loading, setLoading] = useState(false)
   const handleDelete = () => {
     // Logique de suppression ici
     dispatch(
-      deleteDay(id, setLoading, { dateFilter, page, rowsPerPage }, () => setSelectedItem(null), {
+      deleteDay(id, setLoading, { dateFilter, page, rowsPerPage }, () => setSelectedId(null), {
         doCbIsFaled: true
       })
     )
@@ -36,13 +36,13 @@ const ModaleDelete = ({
         isIconOnly
         variant="ghost"
         radius="lg"
-        onClick={() => setSelectedItem(id)}
-        isLoading={selectedItem === id && loading}
+        onClick={() => setSelectedId(id)}
+        isLoading={selectedId === id && loading}
       >
         <IconComponent Icon={FaTrashAlt} className="text-xl" />
       </Button>
 
-      {selectedItem === id && (
+      {selectedId === id && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md text-center">
             <h2 className="text-xl font-semibold mb-4">Confirmation de suppression</h2>
@@ -51,11 +51,11 @@ const ModaleDelete = ({
               <Button
                 color="danger"
                 onClick={handleDelete}
-                isLoading={selectedItem === id && loading}
+                isLoading={selectedId === id && loading}
               >
                 Oui, supprimer
               </Button>
-              <Button variant="flat" onClick={() => setSelectedItem(null)}>
+              <Button variant="flat" onClick={() => setSelectedId(null)}>
                 Annuler
               </Button>
             </div>
