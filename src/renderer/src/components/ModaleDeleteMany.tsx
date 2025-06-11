@@ -46,7 +46,7 @@ const ModaleDeleteMany = ({
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white p-6 rounded-xl shadow-lg w-[90%] max-w-md text-center">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg w-[90%] max-w-md text-center">
             <h2 className="text-xl font-semibold mb-4">Confirmation de suppression</h2>
             <p className="mb-6">Êtes-vous sûr de vouloir supprimer l’élément #{ids.map(e=>e)} ?</p>
             <div className="flex justify-center gap-4">
