@@ -17,6 +17,7 @@ export const getLastDay =
     setLoading(true)
     try {
       dispatch(setCurrentDay(null))
+      dispatch(setError(null))
       const response = await req.get('/days/last')
       if (response.status === 200) {
         dispatch(setCurrentDay(response.data.day))
@@ -55,6 +56,7 @@ export const getDaysWithPaymentsMoneyCount =
     try {
       dispatch(setDays(null))
       dispatch(setPagination(null))
+      dispatch(setError(null))
 
       const response = await req.get(
         `/days/payments-money-count?rowsPerPage=${q.rowsPerPage}&dateFilter=${q.dateFilter}&page=${q.page}`
@@ -96,7 +98,7 @@ export const createDay =
       if (response.status === 201) {
         dispatch(setCurrentDay(response.data.day))
         dispatch(addDay(response.data.day))
-
+        
         addToast({
           title: 'Journée',
           description: response.data.message,
@@ -179,7 +181,7 @@ export const deleteDay =
     setLoading: (value: boolean) => void,
     q: { rowsPerPage: string | undefined; dateFilter: Date | undefined; page: number | undefined },
     cb: () => void,
-    {doCbIsFaled}:{doCbIsFaled:boolean}
+    { doCbIsFaled }: { doCbIsFaled: boolean }
   ) =>
   async (dispatch: TAppDispatch) => {
     setLoading(true)

@@ -26,6 +26,7 @@ export const getHomeData = async (
       dispatch(getmounthlyYearStatus(year)),
       dispatch(getYears())
     ])
+    dispatch(setError(null))
   } catch (error) {
     dispatch(setSummary(null))
     dispatch(setTopPopularProducts(null))
